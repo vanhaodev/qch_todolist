@@ -9,11 +9,6 @@ namespace education_project_backend.Controllers.Auth
     [ApiController]
     public class UserChangePassword : ControllerBase
     {
-        SqlConnection con;
-        public UserChangePassword(IConfiguration configuration)
-        {
-            con = new SqlConnection(configuration["ConnectionStrings:sqlConnectString"]);
-        }
 
         [HttpPost]
         [Route("change-password")]
