@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\education-project-backend",
+    "\\education-project-backend\\Controllers",
+    "\\education-project-backend\\Controllers\\Todo",
+    "\\education-project-backend\\Modules",
+    "\\education-project-backend\\Modules\\Auth"
+  ],
+  "SelectedNode": "\\education-project-backend\\Modules\\Auth\\PasswordHash.cs",
+  "PreviewInSolutionExplorer": false
+}

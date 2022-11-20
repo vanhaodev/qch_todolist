@@ -1,6 +1,6 @@
 ﻿
-
-Create proc CreateWorkspace (
+select * from UserAccount
+alter proc CreateWorkspace (
 	@WorkspaceID varchar(11), @uid varchar(11), @displayname nvarchar(30), @description nvarchar(max)
 )
 as
@@ -12,9 +12,21 @@ as
            ,[description])
      VALUES
            (@WorkspaceID, @uid, @displayname, @description)
+	END
+	BEGIN
+	INSERT INTO [dbo].[WorkspaceUser]
+           ([uid]
+           ,[workspaceID]
+           ,[role])
+		VALUES
+           (@uid, @workspaceid, 1)
+	END
 
-	end
-
+	select * from Workspace
+	select * from WorkspaceUser
+	select * from TodoItem where Workspaceid = 'Wtest001'
+CreateWorkspace 'Wtest002', 'UK0UQUP78U2', N'Dự án game', N'Online game'
+AddMember 'UO2BWR4A302', 'Wtest001', 1
 -----------------------------------
 create TABLE TodoItem(
 	todoid bigint identity(1,1) primary key,
@@ -31,9 +43,9 @@ create TABLE TodoItem(
     REFERENCES workspace(workspaceID)
 )
 go
-CREATE PROC CreateTodoItem(
+alter PROC CreateTodoItem(
 	@workspaceID varchar(11), @iconid int, @title nvarchar(30),
-	@description nvarchar(max), @deadline datetime
+	@description nvarchar(max)
 )
 AS
 	BEGIN
@@ -42,9 +54,9 @@ AS
            ,[iconid]
            ,[title]
            ,[description]
-           ,[deadline])
+   )
 		VALUES
-           (@workspaceID, @iconid, @title, @description, @deadline)
+           (@workspaceID, @iconid, @title, @description)
 		
 	END
 --------------------------------------------
@@ -78,3 +90,9 @@ AS
 		VALUES
            (@uid, @workspaceid, @role)
 	END
+
+
+SELECT workspaceid from WorkspaceUser where uid = 'UK0UQUP78U2'
+SELECT uid, displayname, description from Workspace where workspaceid = 'Wtest001'
+
+create proc GetTodo(@workspace id
